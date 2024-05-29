@@ -191,13 +191,13 @@ variable "configure_connectivity_resources" {
                       root_certificate = optional(list(
                         object({
                           name             = string
-                          thumbprint = string
+                          public_cert_data = string
                         })
                       ), [])
                       revoked_certificate = optional(list(
                         object({
-                          name             = string
-                          public_cert_data = string
+                          name       = string
+                          thumbprint = string
                         })
                       ), [])
                       radius_server_address = optional(string, null)
@@ -415,7 +415,9 @@ variable "configure_connectivity_resources" {
   })
   description = <<DESCRIPTION
 If specified, will customize the \"Connectivity\" landing zone settings and resources.
+
 Notes for the `configure_connectivity_resources` variable:
+
 - `settings.hub_network_virtual_network_gateway.config.address_prefix`
   - Only support adding a single address prefix for GatewaySubnet subnet
 - `settings.hub_network_virtual_network_gateway.config.gateway_sku_expressroute`
