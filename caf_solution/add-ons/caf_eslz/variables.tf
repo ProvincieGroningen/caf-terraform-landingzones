@@ -249,3 +249,7 @@ variable "tf_cloud_hostname" {
   default     = "app.terraform.io"
   description = "When user backend_type with remote, set the TFC/TFE hostname."
 }
+
+variable "strict_subscription_association" {
+  default = false
+}

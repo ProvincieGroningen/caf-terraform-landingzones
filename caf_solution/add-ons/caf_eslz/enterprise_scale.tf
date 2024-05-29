@@ -2,7 +2,7 @@
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "4.2.0"
+  version = "5.2.1"
 
   # source = "/tf/caf/alz"
 
@@ -16,13 +16,14 @@ module "enterprise_scale" {
   default_location = local.global_settings.regions[local.global_settings.default_region]
 
   #path to the policies definition and assignment repo
-  library_path               = var.library_path
-  archetype_config_overrides = local.archetype_config_overrides
-  custom_landing_zones       = local.custom_landing_zones
-  deploy_core_landing_zones  = var.deploy_core_landing_zones
-  root_id                    = var.root_id
-  root_name                  = var.root_name
-  subscription_id_overrides  = local.subscription_id_overrides
+  library_path                    = var.library_path
+  archetype_config_overrides      = local.archetype_config_overrides
+  custom_landing_zones            = local.custom_landing_zones
+  deploy_core_landing_zones       = var.deploy_core_landing_zones
+  root_id                         = var.root_id
+  root_name                       = var.root_name
+  subscription_id_overrides       = local.subscription_id_overrides
+  strict_subscription_association = var.strict_subscription_association
 
   # To support native alz deployment mode
   configure_connectivity_resources = var.configure_connectivity_resources
@@ -36,6 +37,8 @@ module "enterprise_scale" {
   subscription_id_connectivity     = local.subscription_id_connectivity
   subscription_id_management       = local.subscription_id_management
   subscription_id_identity         = local.subscription_id_identity
+
+  template_file_variables          = var.template_file_variables
 }
 
 locals {
